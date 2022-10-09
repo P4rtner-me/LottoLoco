@@ -3,13 +3,17 @@ import NavbarStyleSix from "@/components/_App/NavbarStyleSix";
 import MainBanner from '@/components/DigitalAgencyPortfolio/MainBanner';
 import Projects from '@/components/DigitalAgencyPortfolio/Projects';
 import Footer from "@/components/_App/Footer";
+/* WORLDCOIN*/
 import { WorldIDWidget } from '@worldcoin/id'
+/*walletconnect */
+import {ConnectButton, useAccount} from "@web3modal/react";
+import {Web3Modal} from '@web3modal/react'
 
 const DigitalAgencyPortfolio = () => {
     const [merkleRoot, setMerkleRoot] = useState(props.form);
     const [nullifierHash, setNullifierHash] = useState(props.form);
     const [proof, setProof] = useState(props.form);
-
+    const {isConnected } = useAccount();
 
     const selectMerkleRoot = (merkleRoot) => {
         setMerkleRoot(merkleRoot);                
@@ -43,6 +47,20 @@ const DigitalAgencyPortfolio = () => {
                     } 
                     onError={(error) => console.error(error)}
                     />
+                
+                 {isConnected ? (
+                <div className="container-home">
+                        You are connected with WalletConnect
+                </div>
+                ) :  (
+                    <div className="container-home">
+                    <Login />
+                    <Web3Modal config={config}/>
+                    </div>
+                )}
+
+
+
             <Projects 
                 selectNullifierHash={(nullifierHash) => selectNullifierHash(nullifierHash)}/>
             <Footer />
