@@ -9,6 +9,15 @@ import { WorldIDWidget } from '@worldcoin/id'
 import {ConnectButton, useAccount} from "@web3modal/react";
 import {Web3Modal} from '@web3modal/react'
 
+const config = {
+    projectId: '8cfa08919878a7997aafa3d51bfea954',
+    theme: 'dark',
+    accentColor: 'default',
+    ethereum: {
+      appName: 'web3modal'
+    }
+  }
+  
 const DigitalAgencyPortfolio = () => {
     const [merkleRoot, setMerkleRoot] = useState(props.form);
     const [nullifierHash, setNullifierHash] = useState(props.form);
